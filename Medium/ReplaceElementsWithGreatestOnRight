@@ -34,5 +34,23 @@ def replaceElements(arr):
             i = i + 1
         return res
 
+def replaceElementsOptimised(arr):
+
+        '''
+            This is optimised approach with a time complexity of O(n)
+        '''
+        l = len(arr)
+        i = l - 1
+        temp1 = -1
+        temp2 = -1
+        while i >= 0:
+            temp2 = max(temp1, temp2)
+            temp1 = arr[i]
+            arr[i] = temp2            
+            i = i - 1
+        return arr
+
 print(replaceElements([17,18,5,4,6,1]))
 print(replaceElements([400]))
+print(replaceElementsOptimised([17,18,5,4,6,1]))
+print(replaceElementsOptimised([400]))
