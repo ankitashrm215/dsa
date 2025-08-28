@@ -18,5 +18,24 @@ def twoSumBruteForce(nums, target):
                 if nums[i]+nums[j] == target:
                     return [i, j]
         return res
-        
+
+
+def twoSumOptimised(nums, target):
+    ''' Time Complexity: O(n)
+        Space Complexity: O(n)'''
+
+        l = len(nums)
+        if l == 0:
+            return []
+
+        diffDict = {}
+        for index, num in enumerate(nums): #enumerate on a list returns elements index and number
+            diff = target - num
+            if diff in diffDict: #find diff in the dictionary
+                return [diffDict[diff], index]
+            else:
+                diffDict[num] = index
+        return []
+
 print("Result is", twoSumBruteForce([3,4,5,6], 7))
+print("Result is", twoSumOptimised([3,4,5,6], 7))
