@@ -14,40 +14,41 @@ def validSudoku(board):
     l = len(board)
 
     #validate rows
-        for i in range(0, l):
-            tempSet = set()
-            for j in range(0, l):
-                if board[i][j] in tempSet and board[i][j] != ".": #duplicate encountered
-                    return False
-                else:
-                    tempSet.add(board[i][j])
+    for i in range(0, l):
+        tempSet = set()
+        for j in range(0, l):
+            if board[i][j] in tempSet and board[i][j] != ".": #duplicate encountered
+                return False
+            else:
+                tempSet.add(board[i][j])
         
-        #validate columns
-        for i in range(0, l):
-            tempSet = set()
-            for j in range(0, l):
-                if board[j][i] in tempSet and board[j][i] != ".": #duplicate encountered
-                    return False
-                else:
-                    tempSet.add(board[j][i])
+    #validate columns
+    for i in range(0, l):
+        tempSet = set()
+        for j in range(0, l):
+            if board[j][i] in tempSet and board[j][i] != ".": #duplicate encountered
+                return False
+            else:
+                tempSet.add(board[j][i])
         
-        #validate box
-        tempDict = {}
-        for i in range(0, l):            
-            for j in range(0, l):
-                if board[i][j] != ".":
-                    tempTuple = (i // 3, j // 3)
-                    tempSet = set()
-                    if tempTuple not in tempDict:
-                        tempDict[tempTuple] = set(board[i][j])
+    #validate box
+    tempDict = {}
+    for i in range(0, l):            
+        for j in range(0, l):
+            if board[i][j] != ".":
+                tempTuple = (i // 3, j // 3)
+                tempSet = set()
+                if tempTuple not in tempDict:
+                    tempDict[tempTuple] = set(board[i][j])
+                else:
+                    existingSet = tempDict[tempTuple]
+                    if board[i][j] in existingSet:
+                        return False
                     else:
-                        existingSet = tempDict[tempTuple]
-                        if board[i][j] in existingSet:
-                            return False
-                        else:
-                            existingSet.add(board[i][j])
-                            tempDict[tempTuple] = existingSet
-        return True
+                        existingSet.add(board[i][j])
+                        tempDict[tempTuple] = existingSet
+    return True
+
 print(validSudoku([["1","2",".",".","3",".",".",".","."],
  ["4",".",".","5",".",".",".",".","."],
  [".","9","8",".",".",".",".",".","3"],
@@ -57,3 +58,14 @@ print(validSudoku([["1","2",".",".","3",".",".",".","."],
  [".",".",".",".",".",".","2",".","."],
  [".",".",".","4","1","9",".",".","8"],
  [".",".",".",".","8",".",".","7","9"]]))
+
+print(validSudoku([["1","2",".",".","3",".",".",".","."],
+ ["4",".",".","5",".",".",".",".","."],
+ [".","9","1",".",".",".",".",".","3"],
+ ["5",".",".",".","6",".",".",".","4"],
+ [".",".",".","8",".","3",".",".","5"],
+ ["7",".",".",".","2",".",".",".","6"],
+ [".",".",".",".",".",".","2",".","."],
+ [".",".",".","4","1","9",".",".","8"],
+ [".",".",".",".","8",".",".","7","9"]]
+))
