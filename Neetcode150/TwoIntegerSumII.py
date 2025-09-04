@@ -5,6 +5,12 @@ There will always be exactly one valid solution.
 '''
 
 def TwoIntegerSumII(numbers, target):
+
+    '''
+        Two pointer approach is the best solution in this case.
+        Time complexity: O(n)
+        Space Complexity: O(1)
+    '''
     l = len(numbers)
     i = 0
     j = l - 1
